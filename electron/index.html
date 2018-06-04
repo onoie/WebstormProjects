@@ -1,10 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>ElectronApp</title>
-  </head>
-  <body>
-    <p>Hello World</p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        console.log("HelloWorld");
+//        document.write("HelloWorld<br/>");
+//        window.jQuery = window.$ = require('./jquery.min.js');
+//        if(typeof jQuery != "undefined"){
+//            $(function(){
+//                alert("found jquery");
+//            });
+//        }else{
+//            alert("not found jquery");
+        }
+    </script>
+    <style type="text/css">
+        html,body,#webview{
+            height: 100%;
+            width:100%;
+            margin:0;
+            padding:0;
+        }
+        #webview_wrapper{
+            background-color:white;
+            height: calc(100% - 50px);
+        }
+        #header,#footer{
+            height:25px;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <input title="url" type="text" id="url" />
+        <button onclick="load();">Load</button>
+    </div>
+    <div id="webview_wrapper">
+        Loading
+    </div>
+    <div id="footer">
+        <button onclick="opendev();">Open Dev Tool</button>
+    </div>
+</body>
+<script>
+    "use strict";
+    function load(){
+        // reset_webview_wrapper
+        var webview_wrapper = document.getElementById("webview_wrapper");
+        webview_wrapper.removeChild(webview_wrapper.lastChild);
+        // get url
+        var url = document.getElementById("url").value;
+        // create_new_webview_instanse
+        var newWebview = document.createElement("webview");
+        newWebview.id = "webview";
+        newWebview.setAttribute("src",url);
+        // append new_webview
+        webview_wrapper.appendChild(newWebview);
+    }
+    function opendev(){
+        var webview = document.getElementById("webview");
+        webview.openDevTools();
+    }
+    document.getElementById("url").value="http://localhost:3000/";
+    load();
+</script>
 </html>
