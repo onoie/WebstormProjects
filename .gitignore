@@ -1,3 +1,8 @@
+#forJetbrains
+*.iml
+**/.idea/*
+!**/.idea/runConfigurations
+
 # Logs
 logs
 *.log
